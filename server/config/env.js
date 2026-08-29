@@ -22,7 +22,7 @@ export const config = {
     ].filter(Boolean),
   },
   mongodb: {
-    url: getEnv('MONGODB_URL', 'mongodb://127.0.0.1:27017/mern-ai'),
+    url: getEnv('MONGODB_URL', 'mongodb://127.0.0.1:27017/aitools'),
     isConfigured: Boolean(process.env.MONGODB_URL),
   },
   cloudinary: {

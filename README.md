@@ -1,90 +1,192 @@
-# AITOOLS - MERN Web Application
- 
-## Table of Contents
-- [Overview](#overview)
-- [Preview](#preview)
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Project Structure](#project-structure)
-- [AI Image Generation](#ai-image-generation)
-- [Text Summarization and Translation](#text-summarization-and-translation)
-- [Usage](#usage)
-- [Contributing](#contributing)
+# AITOOLS — AI-Powered Intelligence Workspace
 
-## Overview
-AITOOLS is a powerful MERN stack web application that offers two primary functions: AI image generation and text summarization and translation. This project leverages Node.js, Express.js, MongoDB, and React.js to provide a seamless user experience for both creative image generation and efficient text processing.
+[![CI](https://github.com/rkcodes-ai/AITOOLS/actions/workflows/ci.yml/badge.svg)](https://github.com/rkcodes-ai/AITOOLS/actions/workflows/ci.yml)
 
-## Preview
-[View Live Demo](https://mern-ai-mauve.vercel.app/)
+A full-stack MERN AI workspace platform with multi-modal AI capabilities: image generation, text summarization & translation, document intelligence with RAG, and a semantic knowledge search engine.
 
-![image](https://github.com/yashsarode45/MERN-AI/assets/65209607/b123204d-8dd7-4dd9-a443-2793117f097c)
-![image](https://github.com/yashsarode45/MERN-AI/assets/65209607/9edd19e3-60bc-4adf-bcb5-b3acfdcfa84e)
-![image](https://github.com/yashsarode45/MERN-AI/assets/65209607/b5bb770b-e925-4320-945a-0d628be8685b)
-![image](https://github.com/yashsarode45/MERN-AI/assets/65209607/95468025-e8ae-4050-b4ce-09d2a7e9094d)
-![image](https://github.com/yashsarode45/MERN-AI/assets/65209607/0fea4e7f-9175-4bcf-88d0-6e62fe72dc3b)
-![image](https://github.com/yashsarode45/MERN-AI/assets/65209607/6d160c68-39cb-42e9-a49f-d5f82666a8cd)
-
-
-
+---
 
 ## Features
 
-### Homepage
-- Displays a grid of previously generated AI images.
-- Hovering over images reveals additional information: the generator's name, the prompt used, and the model used.
-- Allows users to download generated images.
+| Feature | Description |
+|---------|-------------|
+| **AI Image Studio** | Generate images via Hugging Face diffusion models with aspect ratios, negative prompts, seeds, guidance scale, and user presets |
+| **Text Summarizer** | Summarize articles from URLs or raw text paragraphs |
+| **Translator** | Translate text across 13+ supported languages |
+| **Document Intelligence & RAG** | Upload PDF/TXT documents, extract and chunk text, ask grounded questions with verifiable source citations |
+| **Knowledge Engine** | Hybrid semantic + keyword search across multi-document knowledge collections |
+| **Authentication & RBAC** | JWT + HTTP-only cookie auth, bcrypt password hashing, per-user data isolation, IDOR protection |
+| **Community Gallery** | Share AI-generated images with the community |
+| **Generation History** | Searchable workspace with 1-click prompt reuse |
 
-### Header
-- Contains a logo on the left side.
-- Provides two main buttons: "Create" and "Summarize."
-- Clicking "Create" redirects to the image generation page.
-- Clicking "Summarize" redirects to the text summarization and translation page.
+---
 
-### Image Generation Page
-- Offers a form for users to input their preferences:
-  - Name
-  - Prompt
-  - Model (selected from a dropdown)
-- Displays the generated image along with a spinner during generation.
-- Provides a "Share with Community" button to save the generated image and its related data to the MongoDB database.
-- Redirects users to the homepage with the newly generated image displayed first in the grid.
+## Tech Stack
 
-### Text Summarization and Translation Page
-- Supports three main functionalities:
-  1. Summarization from input URL or text (paragraph), with the output displayed below.
-  2. Summarization and translation from input URL or text (paragraph).
-  3. Translation from input text.
-- Saves user history using local storage, allowing quick access to previously processed text data.
-- Offers the ability to copy summarized or translated text to the clipboard.
+| Layer | Technology |
+|-------|-----------|
+| **Frontend** | React 18, Tailwind CSS, React Router v6 |
+| **Backend** | Node.js, Express.js (ES Modules) |
+| **Database** | MongoDB (Mongoose ODM) |
+| **AI Providers** | Hugging Face Inference API (images, embeddings, chat), RapidAPI (summarization, translation) |
+| **Storage** | Cloudinary (images), S3-compatible (documents), local filesystem fallback |
+| **Security** | Helmet, CORS allowlist, tiered rate limiting, SSRF protection, prompt injection defense |
+| **DevOps** | Docker, Docker Compose, GitHub Actions CI |
 
-## Technologies Used
+---
 
-- **Node.js and Express.js**: For server-side development and API endpoints.
-- **MongoDB**: As the database for storing generated images and related data.
-- **React.js**: For building the responsive and dynamic user interface.
-- **Tailwind CSS**: To create a beautiful and responsive UI with a glass morphism design.
-- **Hugging Face Models**: Deep learning models for generating images from text input.
-- **Cloudinary**: A cloud-based image storage service for managing and serving images efficiently.
+## Quick Start (Local Development)
+
+### Prerequisites
+
+- Node.js 18+ and npm
+- MongoDB (local or Atlas)
+- Git
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/rkcodes-ai/AITOOLS.git
+cd AITOOLS
+```
+
+### 2. Install Dependencies
+
+```bash
+# Root (concurrent dev runner)
+npm install
+
+# Backend
+cd server && npm install && cd ..
+
+# Frontend
+cd client && npm install && cd ..
+```
+
+### 3. Configure Environment
+
+Copy the example environment file and fill in your credentials:
+
+```bash
+cp .env.example server/.env
+```
+
+**Required for basic operation:**
+- `MONGODB_URL` — MongoDB connection string (default: `mongodb://127.0.0.1:27017/aitools`)
+
+**Optional (enable AI features):**
+- `HF_TOKEN` — Hugging Face API token (image generation, embeddings, RAG chat)
+- `RAPID_API_KEY` — RapidAPI key (article summarization & translation)
+- `CLOUD_NAME`, `API_KEY`, `API_SECRET` — Cloudinary credentials (cloud image hosting)
+- `S3_BUCKET_NAME`, `S3_ACCESS_KEY_ID`, `S3_SECRET_ACCESS_KEY` — S3-compatible storage
+
+### 4. Start Development Servers
+
+```bash
+npm run dev
+```
+
+This starts both the backend (port 8080) and frontend (port 3000) concurrently.
+
+---
+
+## Docker Deployment
+
+```bash
+# Build and run production containers
+docker compose -f docker-compose.prod.yml up --build -d
+```
+
+The production stack includes:
+- **Backend**: Node.js API server on port 8080
+- **Frontend**: Nginx serving React production bundle on port 80
+
+See [docker-compose.prod.yml](docker-compose.prod.yml) for full configuration.
+
+---
+
+## API Reference
+
+The backend exposes a comprehensive REST API covering:
+
+- **System & Health** — `/api/v1/health`
+- **Authentication** — `/api/v1/auth/*`
+- **AI Intelligence** — `/api/v1/ai/*` (image, summarize, translate)
+- **Documents & RAG** — `/api/v1/documents/*`
+- **Knowledge Engine** — `/api/v1/knowledge/*`
+- **Conversations** — `/api/v1/conversations/*`
+- **Generations** — `/api/v1/generations/*`
+- **Image Presets** — `/api/v1/image-presets/*`
+- **Community Posts** — `/api/v1/post/*`
+
+Full endpoint documentation: [docs/API_INVENTORY.md](docs/API_INVENTORY.md)
+
+---
+
+## Architecture
+
+AITOOLS follows a 5-tier decoupled backend architecture:
+
+```
+Routes → Controllers → Validators → Services → Repositories
+                                        ↓
+                                  AI Provider Abstraction Layer
+                                  (Adapters, Registry, Model Catalog)
+```
+
+Full architecture documentation: [docs/CURRENT_ARCHITECTURE.md](docs/CURRENT_ARCHITECTURE.md)
+
+---
+
+## Testing
+
+```bash
+# Backend unit & integration tests (180+ tests)
+cd server && npm test
+
+# Security & multi-tenant authorization tests (34+ tests)
+cd server && npm run test:security
+
+# Frontend React tests (70+ tests)
+cd client && npm test -- --watchAll=false
+
+# Frontend production build validation
+cd client && npm run build
+```
+
+---
 
 ## Project Structure
 
-The project is organized as follows:
+```
+AITOOLS/
+├── client/                  # React 18 SPA frontend
+│   ├── src/
+│   │   ├── components/      # Reusable UI components
+│   │   ├── pages/           # Route-level page components
+│   │   ├── services/api/    # Backend API client modules
+│   │   ├── context/         # React context providers
+│   │   └── tests/           # Frontend test suites
+│   └── Dockerfile           # Frontend production container
+├── server/                  # Express.js API backend
+│   ├── config/              # Environment & database configuration
+│   ├── controllers/         # HTTP request handlers
+│   ├── middleware/           # Auth, security, error handling
+│   ├── models/              # Mongoose schemas
+│   ├── providers/           # AI provider abstraction layer
+│   ├── repositories/        # Data access layer
+│   ├── routes/              # Express route definitions
+│   ├── services/            # Business logic & orchestration
+│   ├── validators/          # Input validation
+│   ├── tests/               # Backend test suites
+│   └── Dockerfile           # Backend production container
+├── docs/                    # Architecture & API documentation
+├── .github/workflows/       # GitHub Actions CI
+└── docker-compose.prod.yml  # Production deployment config
+```
 
-- `server`: Contains server-side code, including API routes and database configuration.
-- `client`: Contains the React.js front-end code and UI components.
-- `models`: Defines MongoDB schemas for storing image and text data.
-- `utils`: Contains utility functions and configuration files.
-- `public`: Holds static assets and the HTML template for the React app.
+---
 
-## AI Image Generation
+## License
 
-The AI image generation feature allows users to input their preferences, including a name, prompt, and model choice. The generated image is displayed with a spinner during processing and can be shared with the community.
-
-## Text Summarization and Translation
-
-The text processing feature offers three main functions: summarization, summarization with translation, and translation. Users can input text or URLs to receive concise summaries or translations, making it a powerful tool for content analysis and language translation tasks.
-
-## Contributing
-Contributions to this project are welcome. Please follow best practices for code quality, documentation, and testing when submitting pull requests.
-
-### Enjoy using AITOOLS for AI image generation, text summarization, and translation!
+ISC
