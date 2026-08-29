@@ -1,7 +1,15 @@
+import dns from 'dns';
 import mongoose from 'mongoose';
 import { ConfigurationError, DatabaseError } from '../utils/errors.js';
 
 let isConnected = false;
+
+// Configure reliable DNS servers for Atlas SRV resolution
+try {
+  dns.setServers(['8.8.8.8', '8.8.4.4', '1.1.1.1']);
+} catch {
+  // Keep system default if unable to override
+}
 
 /**
  * Robust MongoDB Connection Manager
