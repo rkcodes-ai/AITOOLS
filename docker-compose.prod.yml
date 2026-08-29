@@ -1,0 +1,68 @@
+version: '3.8'
+
+# ==============================================================================
+# AITOOLS — Production Docker Compose Configuration
+# ==============================================================================
+# Target Architecture:
+# - Frontend: Nginx serving React production bundle with SPA fallback
+# - Backend: Node.js 18 container executing API routes and provider adapters
+# - Database: External managed MongoDB Atlas cluster (referenced via MONGODB_URL)
+# - Storage: Persistent S3-compatible cloud object storage (S3 / R2 / GCS)
+# - AI Services: Hugging Face & RapidAPI endpoints
+# ==============================================================================
+
+services:
+  backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: aitools-backend-prod
+    ports:
+      - "${PORT:-8080}:8080"
+    environment:
+      - NODE_ENV=production
+      - PORT=8080
+      - CLIENT_URL=${CLIENT_URL:-https://app.aitools.io}
+      - MONGODB_URL=${MONGODB_URL}
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_EXPIRES_IN=${JWT_EXPIRES_IN:-15m}
+      - JWT_REFRESH_EXPIRES_IN=${JWT_REFRESH_EXPIRES_IN:-7d}
+      - S3_BUCKET_NAME=${S3_BUCKET_NAME}
+      - S3_REGION=${S3_REGION:-us-east-1}
+      - S3_ACCESS_KEY_ID=${S3_ACCESS_KEY_ID}
+      - S3_SECRET_ACCESS_KEY=${S3_SECRET_ACCESS_KEY}
+      - S3_ENDPOINT=${S3_ENDPOINT:-}
+      - S3_FORCE_PATH_STYLE=${S3_FORCE_PATH_STYLE:-false}
+      - CLOUD_NAME=${CLOUD_NAME:-}
+      - API_KEY=${API_KEY:-}
+      - API_SECRET=${API_SECRET:-}
+      - FOLDER_NAME=${FOLDER_NAME:-aitools_prod}
+      - HF_TOKEN=${HF_TOKEN}
+      - RAPID_API_KEY=${RAPID_API_KEY}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/v1/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+  frontend:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+      args:
+        - REACT_APP_BASE_URL=${REACT_APP_BASE_URL:-/api/v1}
+    container_name: aitools-frontend-prod
+    ports:
+      - "80:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:80/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s

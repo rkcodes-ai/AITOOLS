@@ -1,0 +1,653 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: 'Inter', sans-serif;
+}
+
+@media screen and (min-width: 480px) {
+  .card:nth-child(7n + 1) {
+      grid-column: auto/span 2;
+      grid-row: auto/span 2;
+  }
+}
+
+/* Sleek custom scrollbars across the app */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #202A44;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8B5CF6;
+}
+
+/* Utility to completely hide scrollbar while preserving scrollability */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+
+/* Tailwind Styles */
+
+.app {
+  @apply relative z-10 flex justify-center items-center flex-col max-w-7xl mx-auto sm:px-16 px-6;
+}
+
+.black_btn {
+  @apply rounded-full border border-black bg-black py-1.5 px-5 text-sm text-white transition-all hover:bg-white hover:text-black;
+}
+
+.head_text {
+  @apply mt-5 text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl text-center;
+}
+
+.orange_gradient {
+  @apply bg-gradient-to-r from-amber-500 to-orange-600  bg-clip-text text-transparent;
+}
+
+.desc {
+  @apply mt-5 text-lg text-gray-600 sm:text-xl text-center max-w-2xl;
+}
+
+.url_input {
+  @apply block w-full rounded-md border border-gray-200 bg-white py-2.5 pl-10 pr-12 text-sm shadow-lg font-satoshi font-medium focus:border-black focus:outline-none focus:ring-0;
+}
+
+.submit_btn {
+  @apply hover:border-gray-700 hover:text-gray-700 absolute inset-y-0 right-0 my-1.5 mr-1.5 flex w-10 items-center justify-center rounded border border-gray-200 font-sans text-sm font-medium text-gray-400;
+}
+
+.link_card {
+  @apply p-3 flex justify-start items-center flex-row bg-white border border-gray-200 gap-3 rounded-lg cursor-pointer;
+}
+
+.copy_btn {
+  @apply w-7 h-7 rounded-full bg-white/10 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur flex justify-center items-center cursor-pointer;
+}
+
+.blue_gradient {
+  @apply font-black bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
+}
+
+.summary_box {
+  @apply rounded-xl border border-gray-200 bg-white/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-4;
+}
+
+/* ========================================================
+   AITOOLS NEURAL INTELLIGENCE SAAS STYLES & ANIMATIONS
+   ======================================================== */
+
+:root, :root[data-theme='dark'], html.dark {
+  --ai-bg: #050816;
+  --ai-surface: #0B1020;
+  --ai-primary: #8B5CF6;
+  --ai-secondary: #06B6D4;
+  --ai-highlight: #22D3EE;
+  --ai-success: #34D399;
+  --ai-text: #F8FAFC;
+  --ai-muted: #94A3B8;
+  --ai-border: #202A44;
+  color-scheme: dark;
+}
+
+:root[data-theme='light'], html.light {
+  --ai-bg: #F8FAFC;
+  --ai-surface: #FFFFFF;
+  --ai-primary: #7C3AED;
+  --ai-secondary: #0891B2;
+  --ai-highlight: #0284C7;
+  --ai-success: #059669;
+  --ai-text: #0F172A;
+  --ai-muted: #475569;
+  --ai-border: #CBD5E1;
+  color-scheme: light;
+}
+
+/* ========================================================
+   LIGHT THEME COMPLETE COMPONENT STYLING SYSTEM
+   ======================================================== */
+
+html[data-theme='light'], html.light {
+  color-scheme: light;
+}
+
+html[data-theme='light'] body,
+html.light body {
+  background-color: #F8FAFC !important;
+  color: #0F172A !important;
+}
+
+/* Background overrides */
+html[data-theme='light'] .bg-\[\#050812\],
+html.light .bg-\[\#050812\],
+html[data-theme='light'] .bg-\[\#050816\],
+html.light .bg-\[\#050816\] {
+  background-color: #F8FAFC !important;
+}
+
+html[data-theme='light'] .bg-\[\#050812\]\/90,
+html.light .bg-\[\#050812\]\/90,
+html[data-theme='light'] .bg-\[\#050812\]\/95,
+html.light .bg-\[\#050812\]\/95,
+html[data-theme='light'] .bg-\[\#050812\]\/80,
+html.light .bg-\[\#050812\]\/80,
+html[data-theme='light'] .bg-\[\#050812\]\/70,
+html.light .bg-\[\#050812\]\/70 {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+html[data-theme='light'] .bg-\[\#0B1020\],
+html.light .bg-\[\#0B1020\],
+html[data-theme='light'] .bg-\[\#0B1020\]\/90,
+html.light .bg-\[\#0B1020\]\/90,
+html[data-theme='light'] .bg-\[\#0B1020\]\/80,
+html.light .bg-\[\#0B1020\]\/80,
+html[data-theme='light'] .bg-\[\#0B1020\]\/70,
+html.light .bg-\[\#0B1020\]\/70,
+html[data-theme='light'] .bg-\[\#0B1020\]\/60,
+html.light .bg-\[\#0B1020\]\/60,
+html[data-theme='light'] .bg-\[\#0B1020\]\/40,
+html.light .bg-\[\#0B1020\]\/40,
+html[data-theme='light'] .bg-\[\#0B1020\]\/30,
+html.light .bg-\[\#0B1020\]\/30 {
+  background-color: #FFFFFF !important;
+}
+
+html[data-theme='light'] .bg-\[\#0F172A\],
+html.light .bg-\[\#0F172A\] {
+  background-color: #F1F5F9 !important;
+}
+
+html[data-theme='light'] .bg-gray-900\/50,
+html.light .bg-gray-900\/50,
+html[data-theme='light'] .bg-gray-900\/40,
+html.light .bg-gray-900\/40,
+html[data-theme='light'] .bg-gray-900\/60,
+html.light .bg-gray-900\/60,
+html[data-theme='light'] .bg-gray-900\/30,
+html.light .bg-gray-900\/30 {
+  background-color: #F8FAFC !important;
+}
+
+html[data-theme='light'] .bg-white\/5,
+html.light .bg-white\/5,
+html[data-theme='light'] .bg-white\/10,
+html.light .bg-white\/10,
+html[data-theme='light'] .bg-white\/20,
+html.light .bg-white\/20 {
+  background-color: #FFFFFF !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Glass cards in Light Mode */
+html[data-theme='light'] .ai-card-glass,
+html.light .ai-card-glass {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02) !important;
+}
+
+html[data-theme='light'] .ai-card-glass:hover,
+html.light .ai-card-glass:hover {
+  border-color: rgba(139, 92, 246, 0.4) !important;
+  box-shadow: 0 14px 30px -5px rgba(139, 92, 246, 0.1) !important;
+}
+
+/* Borders in Light Mode */
+html[data-theme='light'] .border-\[\#202A44\],
+html.light .border-\[\#202A44\],
+html[data-theme='light'] .border-\[\#202A44\]\/70,
+html.light .border-\[\#202A44\]\/70,
+html[data-theme='light'] .border-\[\#202A44\]\/60,
+html.light .border-\[\#202A44\]\/60,
+html[data-theme='light'] .border-\[\#202A44\]\/40,
+html.light .border-\[\#202A44\]\/40,
+html[data-theme='light'] .border-\[\#202A44\]\/30,
+html.light .border-\[\#202A44\]\/30,
+html[data-theme='light'] .border-gray-800,
+html.light .border-gray-800,
+html[data-theme='light'] .border-gray-700,
+html.light .border-gray-700 {
+  border-color: #E2E8F0 !important;
+}
+
+/* Typography in Light Mode */
+html[data-theme='light'] .text-\[\#F8FAFC\],
+html.light .text-\[\#F8FAFC\] {
+  color: #0F172A !important;
+}
+
+html[data-theme='light'] .text-white:not(.bg-gradient-to-r *):not(button.bg-gradient-to-r *):not(.bg-indigo-600 *):not(.bg-purple-600 *):not(button.bg-gradient-to-r):not(a.bg-gradient-to-r):not(.sidebar-nav-active-light):not(.sidebar-nav-active-light *),
+html.light .text-white:not(.bg-gradient-to-r *):not(button.bg-gradient-to-r *):not(.bg-indigo-600 *):not(.bg-purple-600 *):not(button.bg-gradient-to-r):not(a.bg-gradient-to-r):not(.sidebar-nav-active-light):not(.sidebar-nav-active-light *) {
+  color: #0F172A !important;
+}
+
+/* Sidebar Active Navigation Inversion */
+html[data-theme='light'] .sidebar-nav-active-light,
+html.light .sidebar-nav-active-light {
+  background-color: #0F172A !important;
+  border-color: #0F172A !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15) !important;
+}
+
+html[data-theme='light'] .sidebar-nav-active-light *,
+html.light .sidebar-nav-active-light * {
+  color: #FFFFFF !important;
+}
+
+html[data-theme='dark'] .sidebar-nav-active-dark,
+html.dark .sidebar-nav-active-dark,
+:root:not([data-theme='light']) .sidebar-nav-active-dark {
+  background-color: #FFFFFF !important;
+  border-color: #FFFFFF !important;
+  color: #0F172A !important;
+  box-shadow: 0 4px 14px rgba(255, 255, 255, 0.12) !important;
+}
+
+html[data-theme='dark'] .sidebar-nav-active-dark *,
+html.dark .sidebar-nav-active-dark *,
+:root:not([data-theme='light']) .sidebar-nav-active-dark * {
+  color: #0F172A !important;
+}
+
+/* AI Orbital Capability Text & Ring Contrast */
+.ai-orbit-text {
+  fill: #F8FAFC;
+  color: #F8FAFC;
+  transition: fill 0.25s ease, color 0.25s ease;
+}
+
+html[data-theme='light'] .ai-orbit-text,
+html.light .ai-orbit-text,
+html[data-theme='light'] svg text.ai-orbit-text,
+html.light svg text.ai-orbit-text {
+  fill: #0F172A !important;
+  color: #0F172A !important;
+  font-weight: 800 !important;
+}
+
+html[data-theme='dark'] .ai-orbit-text,
+html.dark .ai-orbit-text {
+  fill: #F8FAFC !important;
+  color: #F8FAFC !important;
+}
+
+html[data-theme='light'] svg circle[stroke='#1E293B'],
+html.light svg circle[stroke='#1E293B'],
+html[data-theme='light'] svg line[stroke='#1E293B'],
+html.light svg line[stroke='#1E293B'] {
+  stroke: #CBD5E1 !important;
+}
+
+html[data-theme='light'] .ai-dock-card,
+html.light .ai-dock-card {
+  background-color: #FFFFFF !important;
+  border-color: #E2E8F0 !important;
+}
+
+html[data-theme='light'] button.bg-gradient-to-r,
+html.light button.bg-gradient-to-r,
+html[data-theme='light'] button.bg-gradient-to-r *,
+html.light button.bg-gradient-to-r *,
+html[data-theme='light'] a.bg-gradient-to-r,
+html.light a.bg-gradient-to-r,
+html[data-theme='light'] a.bg-gradient-to-r *,
+html.light a.bg-gradient-to-r * {
+  color: #FFFFFF !important;
+}
+
+html[data-theme='light'] .text-\[\#94A3B8\],
+html.light .text-\[\#94A3B8\],
+html[data-theme='light'] .text-gray-300,
+html.light .text-gray-300,
+html[data-theme='light'] .text-gray-400,
+html.light .text-gray-400 {
+  color: #475569 !important;
+}
+
+html[data-theme='light'] .text-\[\#64748B\],
+html.light .text-\[\#64748B\],
+html[data-theme='light'] .text-gray-500,
+html.light .text-gray-500 {
+  color: #64748B !important;
+}
+
+/* Form Controls & Inputs */
+html[data-theme='light'] input,
+html.light input,
+html[data-theme='light'] textarea,
+html.light textarea,
+html[data-theme='light'] select,
+html.light select {
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
+  border-color: #CBD5E1 !important;
+}
+
+html[data-theme='light'] input:focus,
+html.light input:focus,
+html[data-theme='light'] textarea:focus,
+html.light textarea:focus,
+html[data-theme='light'] select:focus,
+html.light select:focus {
+  border-color: #8B5CF6 !important;
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.18) !important;
+}
+
+html[data-theme='light'] input::placeholder,
+html.light input::placeholder,
+html[data-theme='light'] textarea::placeholder,
+html.light textarea::placeholder {
+  color: #94A3B8 !important;
+}
+
+/* Header & Sidebar */
+html[data-theme='light'] header,
+html.light header {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-color: #E2E8F0 !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04) !important;
+}
+
+html[data-theme='light'] aside,
+html.light aside {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-color: #E2E8F0 !important;
+}
+
+/* Modals & Dialogs */
+html[data-theme='light'] .fixed.inset-0.bg-black\/80,
+html.light .fixed.inset-0.bg-black\/80 {
+  background-color: rgba(15, 23, 42, 0.45) !important;
+}
+
+/* Entrance Stagger Animations */
+@keyframes ai-fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ai-fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Neural Core & Beam Animations */
+@keyframes ai-orb-float {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-6px) scale(1.015);
+  }
+}
+
+@keyframes ai-orb-pulse {
+  0%, 100% {
+    opacity: 0.85;
+    filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.45)) drop-shadow(0 0 35px rgba(6, 182, 212, 0.25));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 30px rgba(139, 92, 246, 0.60)) drop-shadow(0 0 50px rgba(6, 182, 212, 0.4));
+  }
+}
+
+@keyframes ai-glow-wave-expand {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.20;
+  }
+  100% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+
+@keyframes ai-satellite-pulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 5px currentColor);
+  }
+  50% {
+    transform: scale(1.04);
+    filter: drop-shadow(0 0 10px currentColor);
+  }
+}
+
+@keyframes ai-beam-flow {
+  0% {
+    stroke-dashoffset: 48;
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.85;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0.35;
+  }
+}
+
+@keyframes ai-particle-drift {
+  0% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateY(-16px) translateX(8px);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0.2;
+  }
+}
+
+@keyframes ai-spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ai-spin-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes ai-text-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Stagger Entrance Classes */
+.ai-enter-1 {
+  animation: ai-fade-in-up 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0ms forwards;
+  opacity: 0;
+}
+
+.ai-enter-2 {
+  animation: ai-fade-in-up 0.45s cubic-bezier(0.16, 1, 0.3, 1) 60ms forwards;
+  opacity: 0;
+}
+
+.ai-enter-3 {
+  animation: ai-fade-in-up 0.45s cubic-bezier(0.16, 1, 0.3, 1) 120ms forwards;
+  opacity: 0;
+}
+
+.ai-enter-4 {
+  animation: ai-fade-in-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) 180ms forwards;
+  opacity: 0;
+}
+
+.ai-enter-5 {
+  animation: ai-fade-in-up 0.45s cubic-bezier(0.16, 1, 0.3, 1) 240ms forwards;
+  opacity: 0;
+}
+
+.ai-enter-card {
+  animation: ai-fade-in-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) 200ms forwards;
+  opacity: 0;
+}
+
+/* Neural Core Components */
+.ai-orb-animated {
+  animation: ai-orb-float 6s ease-in-out infinite, ai-orb-pulse 5s ease-in-out infinite;
+}
+
+.ai-wave-radiate {
+  animation: ai-glow-wave-expand 4s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+  transform-origin: center center;
+}
+
+.ai-satellite-animated,
+.ai-orbital-node {
+  animation: ai-satellite-pulse 4s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+.ai-beam-active {
+  animation: ai-beam-flow 3s linear infinite;
+}
+
+.ai-particle-floating {
+  animation: ai-particle-drift 6s ease-in-out infinite;
+}
+
+.ai-spin-slow {
+  animation: ai-spin-slow 32s linear infinite;
+  transform-origin: center center;
+}
+
+.ai-spin-reverse {
+  animation: ai-spin-reverse 40s linear infinite;
+  transform-origin: center center;
+}
+
+.ai-text-gradient-animated {
+  background-size: 200% auto;
+  animation: ai-text-shimmer 6s linear infinite;
+}
+
+.ai-grid-pattern {
+  background-size: 44px 44px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+}
+
+.ai-card-glass {
+  background: rgba(10, 15, 28, 0.88);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(120, 130, 200, 0.18);
+  box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+}
+
+.ai-card-glass:hover {
+  border-color: rgba(139, 92, 246, 0.35);
+  box-shadow: 0 25px 60px -15px rgba(139, 92, 246, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.10);
+}
+
+.ai-prompt-input {
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.ai-prompt-input:focus {
+  border-color: rgba(139, 92, 246, 0.65);
+  box-shadow: 0 0 0 1px rgba(139, 92, 246, 0.35), 0 4px 20px -2px rgba(139, 92, 246, 0.15);
+}
+
+@keyframes ai-reveal-image {
+  from {
+    opacity: 0;
+    transform: scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.ai-reveal-image {
+  animation: ai-reveal-image 260ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Accessibility: prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .ai-reveal-image {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ai-enter-1,
+  .ai-enter-2,
+  .ai-enter-3,
+  .ai-enter-4,
+  .ai-enter-5,
+  .ai-enter-card {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .ai-orb-animated,
+  .ai-wave-radiate,
+  .ai-satellite-animated,
+  .ai-orbital-node,
+  .ai-beam-active,
+  .ai-particle-floating,
+  .ai-spin-slow,
+  .ai-spin-reverse,
+  .ai-text-gradient-animated {
+    animation: none !important;
+    transition: none !important;
+  }
+}

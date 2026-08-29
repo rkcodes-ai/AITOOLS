@@ -1,0 +1,1 @@
+Software Engineering Principles: Unit 2 covers requirements engineering, architectural design, component-level design, and user interface design patterns.

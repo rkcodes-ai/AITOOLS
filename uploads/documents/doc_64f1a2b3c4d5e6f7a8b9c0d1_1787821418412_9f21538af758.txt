@@ -1,0 +1,6 @@
+AITOOLS Document Intelligence and Policy Guidelines.
+Chapter 1: Overview
+The AITOOLS platform is an intelligent multimodal workspace that supports text-to-image generation, article summarization, neural translation, and retrieval augmented generation.
+Chapter 2: Security and Access Control
+All user documents, vector chunks, and conversation histories are strictly isolated per authenticated user ID.
+Cross-tenant document retrieval is prevented at both the database and vector search layer.
