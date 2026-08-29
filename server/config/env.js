@@ -29,7 +29,7 @@ export const config = {
     cloudName: getEnv('CLOUD_NAME'),
     apiKey: getEnv('API_KEY'),
     apiSecret: getEnv('API_SECRET'),
-    folderName: getEnv('FOLDER_NAME', 'mern_ai'),
+    folderName: getEnv('FOLDER_NAME', 'aitools'),
     isConfigured: Boolean(process.env.CLOUD_NAME && process.env.API_KEY && process.env.API_SECRET),
   },
   huggingface: {

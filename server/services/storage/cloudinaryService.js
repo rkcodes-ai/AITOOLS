@@ -41,7 +41,7 @@ export const uploadImageToCloudinary = async ({ filePath, folder }) => {
   configureCloudinary();
 
   try {
-    const uploadFolder = folder || config.cloudinary.folderName || 'mern_ai';
+    const uploadFolder = folder || config.cloudinary.folderName || 'aitools';
     const result = await cloudinary.uploader.upload(filePath, {
       folder: uploadFolder,
       resource_type: 'image',
