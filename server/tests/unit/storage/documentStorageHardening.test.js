@@ -90,8 +90,8 @@ describe('Document Storage Hardening & S3 Abstraction Suite', () => {
 
       const configured = new S3CompatibleStorageAdapter({
         bucket: 'test-bucket',
-        accessKeyId: 'AKIAIOSFODNN7EXAMPLE',
-        secretAccessKey: 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY',
+        accessKeyId: 'TEST_ACCESS_KEY_ID',
+        secretAccessKey: 'TEST_SECRET_ACCESS_KEY',
         region: 'us-east-1',
       });
       assert.strictEqual(configured.isConfigured(), true);
